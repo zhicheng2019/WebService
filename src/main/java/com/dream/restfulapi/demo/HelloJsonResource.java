@@ -1,5 +1,8 @@
 package com.dream.restfulapi.demo;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -7,7 +10,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 @Path("/hellojson")
-public class HelloJsonReource {
+public class HelloJsonResource {
+
+    //日志
+    public static final Logger log = LogManager.getLogger(HelloJsonResource.class);
 
     @POST //请求方法类型
     @Path("/post") //请求URI
@@ -19,8 +25,11 @@ public class HelloJsonReource {
      */
     public HelloJsonBean helloJson(HelloJsonBean reqHelloJsonBean) {
 
+        //日志输出
+        log.info("Request Start!");
+
         //解析请求数据
-        System.out.printf("reqHelloJsonBean:" + reqHelloJsonBean.toString());
+        System.out.println("reqHelloJsonBean:" + reqHelloJsonBean.toString());
 
 
         //返回数据编辑
@@ -42,6 +51,7 @@ public class HelloJsonReource {
         resHelloJsonBean.setInputInfo(inputInfo);
         resHelloJsonBean.setOutputInfo(outputInfo);
 
+        log.info("Request End!");
         return resHelloJsonBean;
     }
 
